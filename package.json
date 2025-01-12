@@ -1,0 +1,39 @@
+{
+  "name": "react-2",
+  "version": "1.0.0",
+  "description": "This is first React2 ",
+  
+  "scripts": {
+    "start":"parcel index.html",
+    "build": "parcel build index.html", 
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/so23hail/React2.git"
+  },
+  "keywords": [
+    "React2",
+    "namaster",
+    "react",
+    "akshay",
+    "saini"
+  ],
+  "author": "Muhammad Sohail Khan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/so23hail/React2/issues"
+  },
+  "homepage": "https://github.com/so23hail/React2#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "browserslist":[
+    "last 2 versions"
+  ]
+}
