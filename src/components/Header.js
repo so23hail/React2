@@ -15,7 +15,7 @@ const Header = () =>{
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About Us</Link></li>
                     <li><Link to="/contact">Contact us</Link></li>
-                    <li>Cart</li>
+                    <li><Link to="/cart">Cart</Link></li>
                     <button 
                     className="login" 
                     onClick={

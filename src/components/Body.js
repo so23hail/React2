@@ -16,12 +16,12 @@ const Body =()=>{
 
     const fetchData = async ()=>{
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7195687&lng=75.8577258&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
         const json = await data.json()
-        console.log(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants)
-        console.log("json="+json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants)
-        setListOfRestaurant(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants)
-        setFilteredRestaurants(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants)
+        console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+        console.log("json="+json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+        setListOfRestaurant(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+        setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
     }
     console.log(listOfRestaurants)
 
@@ -45,6 +45,7 @@ const Body =()=>{
                 <button className="filter-btn" onClick={()=>{
                     const filteredList=listOfRestaurants.filter(
                         (res)=>res.info.avgRating>4
+                        
                     )
                     setFilteredRestaurants(filteredList)
                 } }>Top Rated Restaurant</button>
@@ -53,7 +54,7 @@ const Body =()=>{
                 
                 {
                     filteredRestaurants.map(restaurant =>(
-                        <Link to= {"/city/"+restaurant.info.id}><RestaurantCard  resData={restaurant} /></Link>
+                        <Link to= {"/city/"+restaurant.info.id} key={restaurant.info.id}><RestaurantCard   resData={restaurant} /></Link>
                     ))
                 }
                 

@@ -1,4 +1,5 @@
 import Header from "./components/Header"
+import Cart from "./components/Cart"
 import RestaurantCard from "./components/RestaurantCard"
 import Body from "./components/Body"
 import React from "react"
@@ -38,6 +39,10 @@ const appRouter= createBrowserRouter([
             {
                 path:"/contact",
                 element:<Contact />
+            },
+            {
+                path:"/cart",
+                element:<Cart />
             },
             {
                 path:"/city/:resId",
