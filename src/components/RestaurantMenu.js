@@ -1,25 +1,30 @@
-import { useState, useEffect } from "react"
+//import { useState, useEffect } from "react"
 import Shimmer from "./Shimmer"
+//import { MENU_API } from "../utils/constants"
 import { useParams } from "react-router-dom"
-import { MENU_API } from "../utils/constants"
+import useRestaurantMenu from "../utils/useRestaurantMenu"
 const RestaurantMenu =()=>{
-    const [resInfo, setResInfo] = useState([])
+    //const [resInfo, setResInfo] = useState(null)
     const { resId } =useParams()
 
     // const params=useParams()
     // console.log(params)
 
-    useEffect(()=>{
-        fetchMenu()
-    },[])
+    const resInfo= useRestaurantMenu(resId)
 
-    const fetchMenu = async () => {
-        const data= await fetch(MENU_API+resId)
-        const json= await data.json()
-        console.log(json.data)
-        setResInfo(json.data)
-    }
-    if(resInfo.length===0){
+    // After adding custom hooks, removing the below code and pushing it into useReataurantMenu hooks 
+    // and also removing state variable resInfo. I m not removing the code from here so that it reminds me how the code was written before.
+    // useEffect(()=>{
+    //     fetchMenu()
+    // },[])
+
+    // const fetchMenu = async () => {
+    //     const data= await fetch(MENU_API+resId)
+    //     const json= await data.json()
+    //     console.log(json.data)
+    //     setResInfo(json.data)
+    // }
+    if(resInfo===null){
         return <Shimmer />
     } 
     const {name, cuisines, costForTwoMessage}= resInfo.cards[2].card.card.info

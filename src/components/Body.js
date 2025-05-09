@@ -1,5 +1,5 @@
 import RestaurantCard from "./RestaurantCard"
-
+import useOnlineStatus from "../utils/useOnlineStatus"
 import { resList } from "../utils/mockData"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
@@ -10,6 +10,8 @@ const Body =()=>{
     const [listOfRestaurants, setListOfRestaurant] = useState([])
     const [searchText, setSearchText] = useState("")
     const [filteredRestaurants, setFilteredRestaurants]=useState([])
+
+    const onlineStatus=useOnlineStatus()
     useEffect(()=>{
         fetchData();
     },[])
@@ -24,6 +26,10 @@ const Body =()=>{
         setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
     }
     console.log(listOfRestaurants)
+    
+    if (onlineStatus===false){
+        return <h1>Your are Offline. Please Connect to Internet.</h1>
+    }
 
     
     return listOfRestaurants.length===0 ? (<Shimmer /> ) : (
