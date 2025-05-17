@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard"
+import RestaurantCard, {withPromotedLabel} from "./RestaurantCard"
 import useOnlineStatus from "../utils/useOnlineStatus"
 import { resList } from "../utils/mockData"
 import { useEffect, useState } from "react"
@@ -10,6 +10,8 @@ const Body =()=>{
     const [listOfRestaurants, setListOfRestaurant] = useState([])
     const [searchText, setSearchText] = useState("")
     const [filteredRestaurants, setFilteredRestaurants]=useState([])
+    
+    const RestaurantCardPromoted= withPromotedLabel(RestaurantCard)
 
     const onlineStatus=useOnlineStatus()
     useEffect(()=>{
@@ -34,12 +36,14 @@ const Body =()=>{
     
     return listOfRestaurants.length===0 ? (<Shimmer /> ) : (
         <div className="body">
-            <div className="filter">
-                <div className="search">
-                    <input type="text" className="searc-box" value={searchText} onChange={(e)=>{
+            <div className="filter flex">
+                <div className="search p-4 m-4">
+                    <input type="text" className="border border-solid border-black" value={searchText} onChange={(e)=>{
                         setSearchText(e.target.value)
                     }}/>
-                    <button onClick={()=>{
+                    <button 
+                    className=" px-4 py-1 bg-green-300 m-4 rounded-lg"
+                    onClick={()=>{
                         
                         const filterList=listOfRestaurants.filter((res)=>
                             res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -48,15 +52,18 @@ const Body =()=>{
                         
                     }}>Search</button>
                 </div>
-                <button className="filter-btn" onClick={()=>{
+                <div className="search p-4 m-4 flex items-center">
+                <button className="bg-gray-100 px-4 py-1 rounded-lg" onClick={()=>{
                     const filteredList=listOfRestaurants.filter(
                         (res)=>res.info.avgRating>4
                         
                     )
                     setFilteredRestaurants(filteredList)
                 } }>Top Rated Restaurant</button>
+                </div>
+                
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap rounded-lg">
                 
                 {
                     filteredRestaurants.map(restaurant =>(
